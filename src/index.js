@@ -1,7 +1,5 @@
-import React from 'react';
-import {
-   ReactDOM
-} from 'react-dom';
+import React    from 'react';
+import ReactDOM from 'react-dom';
 
 function App(){
    return (
@@ -13,5 +11,5 @@ function App(){
 
 ReactDOM.render(
    <App/>,
-   document.getElemtnById('app')
+   document.getElementById('app')
 );
