@@ -22,14 +22,17 @@ module.exports = {
          },
          {
             test: /\.css$/,
-            loader: 'style-loader'
-         },
-         {
-            test: /\.css$/,
-            loader: 'css-loader',
-            options: {
-               modules: true
-            }
+            use: [
+              "style-loader",
+              {
+                loader: "css-loader",
+                options: {
+                  modules: {
+                    localIdentName: '[name]_[local]'
+                  }
+                }
+              }
+            ]
          },
          {
             test: /\.(woff|woff2|eot|ttf)$/,
@@ -37,6 +40,12 @@ module.exports = {
                'file-loader'
             ]
          },
+        {
+          test: /\.svg$/,
+          use: [
+            'svg-inline-loader'
+          ]
+        }
       ]
    }
 }
