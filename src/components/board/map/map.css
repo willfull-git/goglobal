@@ -6,10 +6,38 @@
   overflow: hidden;
 }
 
+.map:before, .map:after {
+  content: '';
+  display: block;
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+  background-color: red;
+  z-index: 999;
+}
+
+.map:before {
+  height: 100%;
+  width: 1px;
+  top: 0;
+  left: 50%;
+}
+
+.map:after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+}
+
 .map svg {
   height: 100%;
+  width: 100%;
 }
 
 .svg-container {
-  
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
