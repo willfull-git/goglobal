@@ -15,19 +15,19 @@
   z-index: 999;
 }
 
-.map:before {
-  height: 100%;
-  width: 1px;
-  top: 0;
-  left: 50%;
-}
+/* .map:before { */
+  /* height: 100%; */
+  /* width: 1px; */
+  /* top: 0; */
+  /* left: 50%; */
+/* } */
 
-.map:after {
-  height: 1px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-}
+/* .map:after { */
+  /* height: 1px; */
+  /* width: 100%; */
+  /* top: 50%; */
+  /* left: 0; */
+/* } */
 
 .map svg {
   height: 100%;
