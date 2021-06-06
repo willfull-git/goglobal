@@ -13,13 +13,16 @@ export default ()=>{
   const refSvgContainer = createRef();
   const refMap          = createRef();
 
-  let tmpNav;
+  let
+    tmpNav,
+    drag = false;
 
   // |--- state
-  const [nav, setNav] = useState(new Nav(1));
+  const [nav, setNav]   = useState(new Nav(1));
+  // const [drag, setDrag] = useState(false);
 
-  console.log('--| current nav object');
-  console.log(nav);
+  // console.log('--| current nav object');
+  // console.dir(nav);
 
   useEffect(()=>{
     tmpNav = new Nav(nav.zoomLevel, refMap.current, refSvgContainer.current);
@@ -40,30 +43,32 @@ export default ()=>{
   }
 
 
-  // | Handle - Drag
+  // | Handle - Drag start
   // |----------
   const handleDrag = (e)=>{
-    // Log
-    console.log('--| drag!');
+    tmpNav.dragStart(e);
+
+    drag = true;
   }
 
+
+  // | Handle - Mouse Move
+  // |----------
+  const handleMouseMove = (e)=>{
+    if(drag && tmpNav && tmpNav.drag){
+      tmpNav.drag(e);
+    }
+  }
+  
 
   // | Handle - Drag end
   // |----------
-  const handleDragEnd = ()=>{
-    // Log
-    console.log('--| drag end!');
-  }
+  const handleDragEnd = (e)=>{
+    tmpNav.dragEnd(e);
 
-
-  // | Handle - Scroll
-  // |----------
-  const handleMouseMove = (e)=>{
-    console.log('--|');
-    // console.log(e.clientX);
-    // console.log(e.clientY);
+    drag = false;
+    setNav(tmpNav);
   }
-  
 
   return (
     <div
@@ -71,6 +76,7 @@ export default ()=>{
       onWheel={handleZoom}
       onMouseDown={handleDrag}
       onMouseUp={handleDragEnd}
+      onMouseMove={handleMouseMove}
       ref={refMap}
     >
       <div 

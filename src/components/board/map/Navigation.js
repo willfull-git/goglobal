@@ -23,6 +23,10 @@ export default class Navigation {
       this.mapOffLeft   = this.refMap.offsetLeft;
       this.mapOffTop    = this.refMap.offsetTop;
     }
+
+    // |--- drag
+    this.dragStartX = null;
+    this.dragStartY = null;
   }
 
 
@@ -30,7 +34,12 @@ export default class Navigation {
   // |----------
   zoomIn(e){
     // |--- check
-    if(!(this.zoomLevel<5)) return;
+    if(!(this.zoomLevel<5)){
+      this.x = -this.mapTransLeft;
+      this.y = -this.mapTransTop;
+
+      return;
+    }
 
     this.zoomLevel = this.zoomLevel + this.zoomStep;
     this.zoomCef   = this.zoomLevel / (this.zoomLevel-this.zoomStep);
@@ -104,5 +113,44 @@ export default class Navigation {
         this.y = -((this.refSvgContainer.offsetHeight*this.zoomCef) - this.refMap.offsetHeight);
       }
     }
+  }
+
+
+  // | Drag - Start
+  // |----------
+  dragStart(e){
+    console.log('--| [drag start]');
+
+    this.dragStartX = e.clientX;
+    this.dragStartY = e.clientY;
+  }
+
+
+  // | Drag
+  // |----------
+  drag(e){
+    this.x = -this.mapTransLeft - (this.dragStartX - e.clientX);
+    this.y = -this.mapTransTop  - (this.dragStartY - e.clientY);
+
+    if( this.x>=0 ){
+      this.x = 0;
+    } else if( Math.abs(this.x)>=this.refSvgContainer.offsetWidth-this.refMap.offsetWidth ){
+      this.x = -(this.refSvgContainer.offsetWidth-this.refMap.offsetWidth);
+    }
+
+    if( this.y>=0 ){
+      this.y = 0;
+    } else if( Math.abs(this.y)>=this.refSvgContainer.offsetHeight-this.refMap.offsetHeight ){
+      this.y = -(this.refSvgContainer.offsetHeight-this.refMap.offsetHeight);
+    }
+
+    this.refSvgContainer.style.transform = 'translate('+ this.x +'px, '+ this.y +'px)';
+  }
+
+
+  // | Drag - End
+  // |----------
+  dragEnd(e){
+    console.log('--| [drag end]');
   }
 }
