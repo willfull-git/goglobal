@@ -1,2 +1,2 @@
 # react-base
-Scaffolding for react.js
+App that help you become better in CS GO.
