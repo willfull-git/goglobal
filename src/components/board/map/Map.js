@@ -6,8 +6,11 @@ import React, {
 
 import classes from './map.css';
 
-import mapImg from '../../../../assets/img/radar_de_inferno.svg';
+import mapImg from '../../../../assets/img/de_inferno.svg';
+import MapSvg from '../mapsvg/MapSvg.js';
 import Nav    from './Navigation';
+
+import Canvas from '../canvas/Canvas';
 
 export default ()=>{
   const refSvgContainer = createRef();
@@ -81,7 +84,6 @@ export default ()=>{
     >
       <div 
         className={classes['svg-container']}
-        dangerouslySetInnerHTML={{ __html: mapImg }}
         ref={refSvgContainer}
         style={{
           height: 'calc(100% * '+ nav.zoomLevel +')',
@@ -89,6 +91,8 @@ export default ()=>{
           transform: 'translate('+ nav.x +'px, '+ nav.y +'px)'
         }}
       >
+        <MapSvg></MapSvg>
+        <Canvas></Canvas>
       </div>
     </div>
   );

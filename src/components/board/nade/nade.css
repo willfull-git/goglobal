@@ -1,3 +1,6 @@
+.nade {
+}
+
 .from {
 }
 
@@ -5,4 +8,35 @@
 }
 
 .to {
+}
+
+.style-he {
+  fill: #ff5733;
+}
+
+.style-flash {
+  fill: #fff;
+}
+
+.style-smoke {
+  fill: grey;
+}
+
+.style-fire {
+  fill: #c70039;
+}
+
+.style-he .from,
+.style-flash .from,
+.style-smoke .from,
+.style-fire .from {
+  fill: white;
+  stroke: grey;
+}
+
+.style-he line,
+.style-flash line,
+.style-smoke line,
+.style-fire line {
+  stroke: grey;
 }

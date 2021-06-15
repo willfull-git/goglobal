@@ -1,0 +1,11 @@
+.sidebar {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  background-color: grey;
+  box-sizing: border-box;
+}
+
+.sidebar > * + * {
+  margin-top: 10px;
+}
